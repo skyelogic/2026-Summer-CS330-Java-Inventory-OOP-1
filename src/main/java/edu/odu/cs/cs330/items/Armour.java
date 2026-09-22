@@ -42,7 +42,14 @@ public class Armour extends Equippable {
      */
     public Armour(Armour src)
     {
-        // Complete this function.
+        super(src.getName());
+
+        this.durability    = src.durability;
+        this.defense       = src.defense;
+        this.material      = src.material;
+        this.modifier      = src.modifier;
+        this.modifierLevel = src.modifierLevel;
+        this.element       = src.element;
     }
 
     /**
@@ -73,7 +80,12 @@ public class Armour extends Equippable {
     {
         super.name    = snr.next();
 
-        // Complete this function.
+        this.material      = snr.next();
+        this.durability    = snr.nextInt();
+        this.defense       = snr.nextInt();
+        this.modifier      = snr.next();
+        this.modifierLevel = snr.nextInt();
+        this.element       = snr.next();
     }
 
     /**
@@ -84,7 +96,13 @@ public class Armour extends Equippable {
     {
         Armour cpy = new Armour();
 
-        // Complete this function.
+        cpy.setName(this.getName());
+        cpy.setDurability(this.durability);
+        cpy.setDefense(this.defense);
+        cpy.setMaterial(this.material);
+        cpy.setModifier(this.modifier);
+        cpy.setModifierLevel(this.modifierLevel);
+        cpy.setElement(this.element);
 
         return cpy;
     }
@@ -104,9 +122,10 @@ public class Armour extends Equippable {
 
         Armour rhsItem = (Armour) rhs;
 
-        // Complete this function.
-        // Remove the placeholder return
-        return false;
+        return this.name.equals(rhsItem.name)
+            && this.material.equals(rhsItem.material)
+            && this.modifier.equals(rhsItem.modifier)
+            && this.element.equals(rhsItem.element);
     }
 
     /**
@@ -116,9 +135,10 @@ public class Armour extends Equippable {
     @Override
     public int hashCode()
     {
-        // Complete this function.
-        // Remove the placeholder return
-        return -1;
+        return this.name.hashCode()
+            + this.material.hashCode()
+            + this.modifier.hashCode()
+            + this.element.hashCode();
     }
 
     /**
@@ -127,16 +147,15 @@ public class Armour extends Equippable {
     @Override
     public String toString()
     {
-
-        // Complete this function... treat the return as a hint.
         return String.join(
             System.lineSeparator(),
             String.format("  Nme: %s", super.getName()),
+            String.format("  Dur: %d", this.durability),
+            String.format("  Def: %d", this.defense),
+            String.format("  Mtl: %s", this.material),
+            String.format("  Mdr: %s (Lvl %d)", this.modifier, this.modifierLevel),
+            String.format("  Emt: %s", this.element),
             ""
         );
     }
 }
-
-
-
-
